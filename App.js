@@ -108,7 +108,7 @@ export default function App() {
           .replace(/"/g, '').replace(/:/g, '').split(',')
 
         let date = [], rate = []
-        history_clean.map(item => {
+        history_clean.sort().map(item => {
           const item_split = item.split(b)
           date.push(item_split[0])
           rate.push(parseFloat(item_split[1]))
@@ -158,10 +158,10 @@ export default function App() {
 
       <Modal
         animationType="fade"
-        transparent={true}
+        transparent={false}
         visible={show_chart}
       >
-        <Container style={{ backgroundColor: 'transparent' }}>
+        <Container style={{ backgroundColor: '#1C2833' }}>
           <Header >
             <Left>
               <Button transparent onPress={() => setshow_chart(false)}>
@@ -169,7 +169,7 @@ export default function App() {
               </Button>
             </Left>
             <Body style={{ alignItems: 'center' }}>
-              <Title>Last 30 Day</Title>
+              <Title>Last 30 Day Rate</Title>
             </Body>
             <Right>
             </Right>
@@ -205,34 +205,97 @@ export default function App() {
         <ScrollView>
           <Grid>
             <Col style={{ alignItems: 'center' }}>
-              <Row style={{ height: 60 }}>
+              <Row style={{ height: 50 }}>
                 <ForexListItem currency='CAD' rate={data.CAD} CAD={cad}
-                  flagPath={require('./assets/flags/CAD.png')}
+                  flagPath={require('./assets/flags/Canada.png')}
                   buttonPress={(value) => forex_button_press(value, 'CAD')}
+                  buttonLongPress={() => { }}
                 ></ForexListItem>
               </Row>
 
+              <Row style={{ height: 50 }}>
+                <ForexListItem currency='CNY' rate={data.CNY} CAD={cad}
+                  flagPath={require('./assets/flags/China.png')}
+                  buttonPress={(value) => forex_button_press(value, 'CNY')}
+                  buttonLongPress={() => load_history('CAD', 'CNY')}
+                ></ForexListItem>
+              </Row>
+
+              <Row style={{ height: 50 }}>
+                <ForexListItem currency='AUD' rate={data.AUD} CAD={cad}
+                  flagPath={require('./assets/flags/Australia.png')}
+                  buttonPress={(value) => forex_button_press(value, 'AUD')}
+                  buttonLongPress={() => load_history('CAD', 'AUD')}
+                ></ForexListItem>
+              </Row>
+
+              <Row style={{ height: 50 }}>
+                <ForexListItem currency='HKD' rate={data.HKD} CAD={cad}
+                  flagPath={require('./assets/flags/HongKong.png')}
+                  buttonPress={(value) => forex_button_press(value, 'HKD')}
+                  buttonLongPress={() => load_history('CAD', 'HKD')}
+                ></ForexListItem>
+              </Row>
             </Col>
             <Col>
-              <Row style={{ height: 60 }}>
+              <Row style={{ height: 50 }}>
                 <ForexListItem currency='USD' rate={data.USD} CAD={cad}
-                  flagPath={require('./assets/flags/USD.png')}
+                  flagPath={require('./assets/flags/USA.png')}
                   buttonPress={(value) => forex_button_press(value, 'USD')}
                   buttonLongPress={() => load_history('CAD', 'USD')}
                 ></ForexListItem>
               </Row>
 
+              <Row style={{ height: 50 }}>
+                <ForexListItem currency='EUR' rate={data.EUR} CAD={cad}
+                  flagPath={require('./assets/flags/EU.png')}
+                  buttonPress={(value) => forex_button_press(value, 'EUR')}
+                  buttonLongPress={() => load_history('CAD', 'EUR')}
+                ></ForexListItem>
+              </Row>
+
+              <Row style={{ height: 50 }}>
+                <ForexListItem currency='GBP' rate={data.GBP} CAD={cad}
+                  flagPath={require('./assets/flags/England.png')}
+                  buttonPress={(value) => forex_button_press(value, 'GBP')}
+                  buttonLongPress={() => load_history('CAD', 'GBP')}
+                ></ForexListItem>
+              </Row>
+
+              <Row style={{ height: 50 }}>
+                <ForexListItem currency='CHF' rate={data.CHF} CAD={cad}
+                  flagPath={require('./assets/flags/Sweden.png')}
+                  buttonPress={(value) => forex_button_press(value, 'CHF')}
+                  buttonLongPress={() => load_history('CAD', 'CHF')}
+                ></ForexListItem>
+              </Row>
             </Col>
             <Col>
-              <Row style={{ height: 60 }}>
+              <Row style={{ height: 50 }}>
                 {btc_rate ?
                   <ForexListItem currency='BTC' rate={btc_rate} CAD={cad}
                     flagPath={require('./assets/flags/BTC.png')}
                     buttonPress={(value) => forex_button_press(value, 'BTC')}
+                    buttonLongPress={() => { }}
                   ></ForexListItem> : <Spinner />
                 }
               </Row>
 
+              <Row style={{ height: 50 }}>
+                <ForexListItem currency='JPY' rate={data.JPY} CAD={cad}
+                  flagPath={require('./assets/flags/Japan.png')}
+                  buttonPress={(value) => forex_button_press(value, 'JPY')}
+                  buttonLongPress={() => load_history('CAD', 'JPY')}
+                ></ForexListItem>
+              </Row>
+
+              <Row style={{ height: 50 }}>
+                <ForexListItem currency='RUB' rate={data.RUB} CAD={cad}
+                  flagPath={require('./assets/flags/Russia.png')}
+                  buttonPress={(value) => forex_button_press(value, 'RUB')}
+                  buttonLongPress={() => load_history('CAD', 'RUB')}
+                ></ForexListItem>
+              </Row>
             </Col>
           </Grid>
         </ScrollView>
